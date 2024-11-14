@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="Style.css">
+  <script>
+    async function includeHTML() {
+        const elements = document.querySelectorAll('[include-html]');
+        for (let el of elements) {
+            const file = el.getAttribute('include-html');
+            try {
+                const response = await fetch(file);
+                if (response.ok) {
+                    el.innerHTML = await response.text();
+                    // Cargar el JS del footer después de insertarlo
+                    if (file.includes("header.html")) {
+                        const script = document.createElement("script");
+                        script.src = "/rutinas-de-ejercicios/includes/Header/script.js";
+                        document.body.appendChild(script);
+                    }
+                } else {
+                    el.innerHTML = "<p>Error al cargar el contenido.</p>";
+                }
+            } catch (error) {
+                el.innerHTML = "<p>Error de conexión al cargar el contenido.</p>";
+            }
+        }
+    }
+    document.addEventListener("DOMContentLoaded", includeHTML);
+</script>
+
+  <title>Rutinas de Ejercicios</title>
+</head>
+<body>
+  <div include-html="/rutinas-de-ejercicios/includes/Header/header.html"></div>
+
+
+
+    
+    <div class="container">
+      <aside class="sidebar">
+        <div class="menu-item">
+          <a href="/rutinas-de-ejercicios/inicio/index.html">
+              <img src="/rutinas-de-ejercicios/imagenes/home_24dp_434343_FILL0_wght400_GRAD0_opsz24.svg" alt="Icon" />
+              <span>Inicio</span>
+          </a>
+      </div>
+        <div class="menu-item active">
+          <a href="/rutinas-de-ejercicios/calendario/index.html">
+            <img src="/rutinas-de-ejercicios/imagenes/event_24dp_434343_FILL0_wght400_GRAD0_opsz24.svg" alt="Icon" />
+            <span>Calendario</span>
+          </a>
+        </div>
+        <div class="menu-item">
+          <a href="/rutinas-de-ejercicios/favoritos/favoritos.html">
+            <img src="/rutinas-de-ejercicios/imagenes/favorite_24dp_434343_FILL0_wght400_GRAD0_opsz24.svg" alt="Icon" />
+            <span href="#">Favoritos</span>
+          </a>
+        </div>
+        <div class="menu-item">
+          <a href="/rutinas-de-ejercicios/notificaciones/index.html">
+            <img src="/rutinas-de-ejercicios/imagenes/notifications_24dp_434343_FILL0_wght400_GRAD0_opsz24.svg" alt="Icon" />
+            <span href="#">Notificaciones</span>
+          </a>
+        </div>
+       
+      </aside>
+      <div class="cal">
+        <div class="datepicker">
+            <div class="datepicker-top">
+                <div class="month-selector"> 
+                    <span class="month-name">Mayo 2024</span>
+                </div>
+            </div>
+            <div class="datepicker-calendar">
+                <span class="day">lun</span>
+                <span class="day">mar</span>
+                <span class="day">mie</span>
+                <span class="day">ju</span>
+                <span class="day">vi</span>
+                <span class="day">sa</span>
+                <span class="day">do</span>
+                <button class="date faded">30</button>
+                <button class="date">1</button>
+                <button class="date">2</button>
+                <button class="date">3</button>
+                <button class="date">4</button>
+                <button class="date">5</button>
+                <button class="date">6</button>
+                <button class="date">7</button>
+                <button class="date">8</button>
+                <button class="date ">9</button>
+                <button class="date">10</button>
+                <button class="date">11</button>
+                <button class="date current-day">12</button>
+                <button class="date">13</button>
+                <button class="date">14</button>
+                <button class="date">15</button>
+                <button class="date">16</button>
+                <button class="date">17</button>
+                <button class="date">18</button>
+                <button class="date">19</button>
+                <button class="date">20</button>
+                <button class="date">21</button>
+                <button class="date">22</button>
+                <button class="date">23</button>
+                <button class="date">24</button>
+                <button class="date">25</button>
+                <button class="date">26</button>
+                <button class="date">27</button>
+                <button class="date">28</button>
+                <button class="date">29</button>
+                <button class="date">30</button>
+                <button class="date">31</button>
+                <button class="date faded">1</button>
+                <button class="date faded">2</button>
+                <button class="date faded">3</button>
+            </div>
+            <div><a href="/rutinas-de-ejercicios/mis-tareas/mistareas.html">
+              <button class="tarea">tareas</button>
+            </a>
+            </div>
+        </div>
+       
+    
+          
+    
+    <div class="historial">
+        <h2>ejercicio realizado</h2>
+            <button class="realizado" ><i class="fa-regular fa-circle-play"></i> EJERCICIO REALIZADO</button>
+            <button class="realizado"><i class="fa-regular fa-circle-play"></i> EJERCICIO REALIZADO</button>
+            <button class="realizado"><i class="fa-regular fa-circle-play"></i>    EJERCICIO REALIZADO</button>
+         
+    </div>
+  </div>
+    </div>
+ 
+    <div include-html="/rutinas-de-ejercicios/includes/inicio/inicio.html"></div>
+  </body>
+  </html>

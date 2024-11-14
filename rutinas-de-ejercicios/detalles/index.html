@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="Style.css"><script>
+    async function includeHTML() {
+        const elements = document.querySelectorAll('[include-html]');
+        for (let el of elements) {
+            const file = el.getAttribute('include-html');
+            try {
+                const response = await fetch(file);
+                if (response.ok) {
+                    el.innerHTML = await response.text();
+                    // Cargar el JS del footer después de insertarlo
+                    if (file.includes("header.html")) {
+                        const script = document.createElement("script");
+                        script.src = "/rutinas-de-ejercicios/includes/Header/script.js";
+                        document.body.appendChild(script);
+                    }
+                } else {
+                    el.innerHTML = "<p>Error al cargar el contenido.</p>";
+                }
+            } catch (error) {
+                el.innerHTML = "<p>Error de conexión al cargar el contenido.</p>";
+            }
+        }
+    }
+    document.addEventListener("DOMContentLoaded", includeHTML);
+</script>
+
+  <title>Rutinas de Ejercicios</title>
+</head>
+<body>
+    <div include-html="/rutinas-de-ejercicios/includes/Header/header.html"></div>
+  <div class="cont">
+  <div class="contenedor">
+    <img src="/rutinas-de-ejercicios/detalles/sportswoman-stretching-her-back-white-copyspace.jpg" alt="" class="guia">
+    <div class="instruccines">
+    <h2> <span class="title">Instrucciones</span></h2>
+    <ul>
+        <li class="one">Acuéstate boca abajo con las piernas extendidas y los pies juntos.</li>
+        <br>
+        <li>Coloca las manos debajo de los hombros, con los codos cerca del cuerpo.
+        </li>
+        <br>
+        <li>Inhala y presiona las manos contra el suelo, levantando el pecho y la cabeza.</li>
+        <br>
+        <li>Endereza los brazos mientras levantas el torso y las piernas del suelo.</li><br>
+        <li>Extiende los brazos completamente, manteniendo los hombros alejados de las orejas.</li><br>
+        <li>Abre el pecho y lleva los omóplatos hacia abajo y juntos.</li><br>
+        <li>Mira ligeramente hacia arriba sin forzar el cuello.
+          .</li><br>
+        <li>Mantén la postura por 5-10 respiraciones profundas.
+        </li>
+       
+    </ul>
+   
+</div>
+
+</div>
+</div>
+<div include-html="/rutinas-de-ejercicios/includes/inicio/inicio.html"></div>
+
+<script src="script.js"></script>
+</body>
+</html>

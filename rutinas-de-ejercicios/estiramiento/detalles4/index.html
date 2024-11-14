@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="esp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <title>Document</title>
+    <script>
+      async function includeHTML() {
+          const elements = document.querySelectorAll('[include-html]');
+          for (let el of elements) {
+              const file = el.getAttribute('include-html');
+              try {
+                  const response = await fetch(file);
+                  if (response.ok) {
+                      el.innerHTML = await response.text();
+                      // Cargar el JS del footer después de insertarlo
+                      if (file.includes("header.html")) {
+                          const script = document.createElement("script");
+                          script.src = "/rutinas-de-ejercicios/includes/Header/script.js";
+                          document.body.appendChild(script);
+                      }
+                  } else {
+                      el.innerHTML = "<p>Error al cargar el contenido.</p>";
+                  }
+              } catch (error) {
+                  el.innerHTML = "<p>Error de conexión al cargar el contenido.</p>";
+              }
+          }
+      }
+      document.addEventListener("DOMContentLoaded", includeHTML);
+  </script>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div include-html="/rutinas-de-ejercicios/includes/Header/header.html"></div>
+
+  <div class="cont">
+  <div class="contenedor">
+    <img src="/rutinas-de-ejercicios/andres/ejercicios/imagenes/high-angle-woman-sitting-floor.jpg" alt="" class="guia">
+    <div class="instruccines">
+    <h2> <span class="title">Instrucciones</span></h2>
+    <ul>
+        <li class="one">Siéntate en el suelo con la espalda recta y las piernas extendidas frente a ti.</li><br>
+        <li>Dobla las rodillas y junta las plantas de los pies, acercándolos lo más posible hacia tu cuerpo.</li><br>
+        <li>Sujeta los pies con ambas manos y mantén los codos hacia los lados.</li><br>
+        <li>Con los codos, presiona suavemente las rodillas hacia el suelo para profundizar el estiramiento.</li><br>
+        <li>Mantén la espalda recta y evita encorvarte hacia adelante.</li><br>
+        <li>Respira profundamente y mantén el estiramiento durante 20-30 segundos.</li><br>
+        <li>Relaja la presión y regresa lentamente a la posición inicial.</li><br>
+       
+       
+    </ul>
+   
+</div>
+
+</div>
+</div>
+<div include-html="/rutinas-de-ejercicios/includes/inicio/inicio.html"></div>
+
+</body>
+</html>
